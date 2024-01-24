@@ -1,6 +1,25 @@
+import { auth } from "auth"
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth()
+ 
+  if (session?.user) {
+    return (
+      <div>
+        <h1 className="text-4xl mb-4 mt-4 font-extrabold">Get started</h1>
+        <div>
+          <p>You are signed in.</p>
+          <p>Name: {session.user.name}</p>
+          <p>Email: {session.user.email}</p>
+          <p>Subsriber ID: {session.user.id} </p>
+          <p>Session expiry: {session.expires}</p>
+          <p>Token: {session.sat}</p>
+        </div>
+      </div>    
+    )
+  }
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
