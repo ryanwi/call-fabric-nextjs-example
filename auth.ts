@@ -37,21 +37,21 @@ export const config = {
     },
   ],
   callbacks: {
-    async session({ session, user, token }) {
-      console.log("session =", { session, user, token })
+    async session({ session }) {
+      // console.log("session =", { session })
 
-      session.user.id = token.id || "id unset"
-      session.user.name = token.name || "first last unset"
-      session.sat = token.accessToken;
+      // session.user.id = token.id || "id unset"
+      // session.user.name = token.name || "first last unset"
+      // session.sat = token.accessToken;
 
       return session
     },    
     async jwt({ token, account, user }) {
       if (account && user) {
-        console.log("jwt = ", { token, account, user })
         // Persist the OAuth access_token and or the user id to the token right after signin
+        // console.log("jwt = ", { token, account, user })
         token.id = user.id
-        token.name = user.display_name
+        // token.name = user.displayName
         token.accessToken = account.access_token
         token.refreshToken = account.refresh_token
       }
