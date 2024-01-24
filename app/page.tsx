@@ -1,5 +1,6 @@
 import { auth } from "auth"
 import Image from "next/image";
+import Link from 'next/link';
 
 export default async function Home() {
   const session = await auth()
@@ -30,10 +31,24 @@ export default async function Home() {
           </p>
           <div>
             <div className="inline-flex w-full flex-col items-stretch justify-center gap-2 px-4 md:flex-row xl:justify-start xl:px-0">
-              <a
-                href="api/auth/signin"
-                className="btn btn-neutral md:btn-lg md:btn-wide group px-12"
-              >
+              <Link href="/signup" className="btn btn-primary md:btn-lg md:btn-wide group px-12">
+                Join
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="hidden h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 md:inline-block"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                  ></path>
+                </svg>
+              </Link>
+              <Link href="/api/auth/signin" className="btn btn-neutral md:btn-lg md:btn-wide group px-12">
                 Sign in
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +64,7 @@ export default async function Home() {
                     d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
                   ></path>
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,11 +1,13 @@
 import { auth } from "auth"
+import Link from 'next/link';
+import NavBar  from "@/components/navbar"
 
 export default async function Header() {
   const session = await auth()
 
   if (session?.user) {
     return (
-      <div className="navbar bg-neutral text-neutral-content">
+      <NavBar>
         <div className="flex-1">
           <a href="/" className="btn btn-neutral text-xl">Call Fabric Demo</a>
         </div>
@@ -154,20 +156,23 @@ export default async function Header() {
             </ul>
           </div>
         </div>
-      </div>
+      </NavBar>
     )
   }
 
   return (
-    <div className="navbar bg-neutral text-neutral-content">
+    <NavBar>
       <div className="flex-1">
         <a href="/" className="btn btn-neutral text-xl">Call Fabric Demo</a>
       </div>
       <div className="flex-none gap-2">
         <div>
-          <a href="/api/auth/signin" className="btn btn-primary">Sign in</a>
+          <Link href="/api/auth/signin" className="btn btn-ghost">Sign in</Link>
+        </div>
+        <div>
+          <Link href="/signup" className="btn btn-primary">Join</Link>
         </div>
       </div>
-    </div>
+    </NavBar>
   )
 }
