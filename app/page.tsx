@@ -12,15 +12,7 @@ export default function Home() {
           <div>
             <div className="inline-flex w-full flex-col items-stretch justify-center gap-2 px-4 md:flex-row xl:justify-start xl:px-0">
               <a
-                data-sveltekit-preload-data="off"
-                href="/signup"
-                className="btn btn-primary md:btn-lg md:btn-wide group px-12"
-              >
-                Join
-              </a>
-              <a
-                data-sveltekit-preload-data="off"
-                href="/auth/signin"
+                href="api/auth/signin"
                 className="btn btn-neutral md:btn-lg md:btn-wide group px-12"
               >
                 Sign in
