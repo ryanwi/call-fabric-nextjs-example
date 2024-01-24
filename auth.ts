@@ -37,11 +37,27 @@ export const config = {
     },
   ],
   callbacks: {
-    // authorized({ request, auth }) {
-    //   const { pathname } = request.nextUrl
-    //   if (pathname === "/middleware-example") return !!auth
-    //   return true
-    // },
+    async session({ session, user, token }) {
+      console.log("session =", { session, user, token })
+
+      session.user.id = token.id || "id unset"
+      session.user.name = token.name || "first last unset"
+      session.sat = token.accessToken;
+
+      return session
+    },    
+    async jwt({ token, account, user }) {
+      if (account && user) {
+        console.log("jwt = ", { token, account, user })
+        // Persist the OAuth access_token and or the user id to the token right after signin
+        token.id = user.id
+        token.name = user.display_name
+        token.accessToken = account.access_token
+        token.refreshToken = account.refresh_token
+      }
+
+      return token
+    },
   },
 } satisfies NextAuthConfig
 
