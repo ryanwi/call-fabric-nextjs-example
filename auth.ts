@@ -1,5 +1,4 @@
-import NextAuth from "next-auth"
-
+import NextAuth, { type Session } from "next-auth";
 import type { NextAuthConfig } from "next-auth"
 
 export const config = {
@@ -37,23 +36,26 @@ export const config = {
     },
   ],
   callbacks: {
-    async session({ session }) {
-      // console.log("session =", { session })
-
-      // session.user.id = token.id || "id unset"
-      // session.user.name = token.name || "first last unset"
-      // session.sat = token.accessToken;
+    async session({ session, token }: { session: Session; token?: any; }) {
+      session.user.id = token.id
+      session.user.sat = token.accessToken
 
       return session
     },    
     async jwt({ token, account, user }) {
       if (account && user) {
+        console.log("jwt callback = ", account, user)
         // Persist the OAuth access_token and or the user id to the token right after signin
-        // console.log("jwt = ", { token, account, user })
-        token.id = user.id
-        // token.name = user.displayName
+        // token.name = `${user.firstName} ${user.lastName}`
+        token.id  = user.id
         token.accessToken = account.access_token
         token.refreshToken = account.refresh_token
+        token.expiresAt = Math.floor(Date.now() / 1000 + (account.expires_in || 0))
+      // } else if (Date.now() < token.expiresAt * 1000) {
+      // isValidToken
+      //   return token
+      // } else {
+      //   // If the access token has expired, try to refresh it
       }
 
       return token

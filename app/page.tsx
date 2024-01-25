@@ -15,7 +15,7 @@ export default async function Home() {
           <p>Email: {session.user.email}</p>
           <p>Subsriber ID: {session.user.id} </p>
           <p>Session expiry: {session.expires}</p>
-          <p>Token: </p>
+          <p>Token: {session.user.sat}</p>
         </div>
       </div>
     );
