@@ -1,14 +1,14 @@
-import { auth } from "auth"
-import Image from "next/image";
+import { auth } from 'auth';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Home() {
-  const session = await auth()
- 
+  const session = await auth();
+
   if (session?.user) {
     return (
       <div>
-        <h1 className="text-4xl mb-4 mt-4 font-extrabold">Get started</h1>
+        <h1 className="mb-4 mt-4 text-4xl font-extrabold">Get started</h1>
         <div>
           <p>You are signed in.</p>
           <p>Name: {session.user.name}</p>
@@ -17,21 +17,26 @@ export default async function Home() {
           <p>Session expiry: {session.expires}</p>
           <p>Token: </p>
         </div>
-      </div>    
-    )
+      </div>
+    );
   }
 
   return (
     <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
+      <div className="hero-content flex flex-col md:flex-row-reverse">
         <div>
-          <h1 className="text-5xl font-bold">Simplified Communication</h1>
+          <h1 className="text-3xl font-bold md:text-5xl">
+            Simplified Communication
+          </h1>
           <p className="py-6">
             Connect and interact with voice, video, and chat seamlessly
           </p>
           <div>
-            <div className="inline-flex w-full flex-col items-stretch justify-center gap-2 px-4 md:flex-row xl:justify-start xl:px-0">
-              <Link href="/signup" className="btn btn-primary md:btn-lg md:btn-wide group px-12">
+            <div className="flex flex-col items-stretch justify-center gap-2 px-4 sm:flex-row">
+              <Link
+                href="/signup"
+                className="group btn btn-primary px-6 sm:btn-lg"
+              >
                 Join
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +44,7 @@ export default async function Home() {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="hidden h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 md:inline-block"
+                  className="hidden h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 md:inline-block rtl:rotate-180 rtl:group-hover:-translate-x-1"
                 >
                   <path
                     strokeLinecap="round"
@@ -48,7 +53,10 @@ export default async function Home() {
                   ></path>
                 </svg>
               </Link>
-              <Link href="/api/auth/signin" className="btn btn-neutral md:btn-lg md:btn-wide group px-12">
+              <Link
+                href="/api/auth/signin"
+                className="group btn btn-neutral px-6 sm:btn-lg"
+              >
                 Sign in
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +64,7 @@ export default async function Home() {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="hidden h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 md:inline-block"
+                  className="hidden h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 md:inline-block rtl:rotate-180 rtl:group-hover:-translate-x-1"
                 >
                   <path
                     strokeLinecap="round"
