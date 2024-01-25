@@ -13,9 +13,6 @@ export default async function Home() {
           <p>You are signed in.</p>
           <p>Name: {session.user.name}</p>
           <p>Email: {session.user.email}</p>
-          <p>Subsriber ID: {session.user.id} </p>
-          <p>Session expiry: {session.expires}</p>
-          <p>Token: {session.user.sat}</p>
         </div>
       </div>
     );
