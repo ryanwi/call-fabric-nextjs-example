@@ -1,6 +1,6 @@
 import { auth } from "auth"
 import Link from 'next/link';
-import NavBar  from "@/components/navbar"
+import NavBar  from "@/app/ui/navbar"
 
 export default async function Header() {
   const session = await auth()
