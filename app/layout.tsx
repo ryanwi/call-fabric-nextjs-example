@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <div className="container mx-auto px-4">
+        <div className="bg-base-100">
         {children}
         </div>
         <Footer />
