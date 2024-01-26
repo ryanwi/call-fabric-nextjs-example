@@ -44,7 +44,6 @@ export const config = {
     },    
     async jwt({ token, account, user }) {
       if (account && user) {
-        console.log("jwt callback = ", account, user)
         // Persist the OAuth access_token and or the user id to the token right after signin
         // token.name = `${user.firstName} ${user.lastName}`
         token.id  = user.id
