@@ -9,15 +9,15 @@ export default async function Header() {
     return (
       <NavBar>
         <div className="flex-1">
-          <a href="/" className="btn btn-neutral text-xl">Call Fabric Demo</a>
+          <Link href="/" className="btn btn-neutral text-xl">Call Fabric Demo</Link>
         </div>
 
         <div className="flex-0">
           <div className="">
-            <a href="/rooms" className="btn btn-ghost">Rooms</a>
+            <Link href="/rooms" className="btn btn-ghost">Rooms</Link>
           </div>
           <div className="">
-            <a href="/calls" className="btn btn-ghost">Calls</a>
+            <Link href="/calls" className="btn btn-ghost">Calls</Link>
           </div>    
           <div className="dropdown dropdown-end">
             <div className="flex-none">
@@ -53,7 +53,7 @@ export default async function Header() {
               </li>
               <li></li>
               <li>
-                <a href="/">
+                <Link href="/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -69,10 +69,10 @@ export default async function Header() {
                     />
                   </svg>
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/profile">
+                <Link href="/profile">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -88,10 +88,10 @@ export default async function Header() {
                     />
                   </svg>
                   My Profile
-                </a>
+                </Link>                  
               </li>
               <li>
-                <a href="/settings">
+                <Link href="/settings">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -112,10 +112,10 @@ export default async function Header() {
                     />
                   </svg>
                   Settings
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/about">
+                <Link href="/about">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -131,11 +131,11 @@ export default async function Header() {
                     /></svg
                   >
                   About
-                </a>
+                </Link>
               </li>
               <li></li>
               <li>
-                <a href="/api/auth/signout" className="button">
+                <Link href="/api/auth/signout" className="button">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -151,7 +151,7 @@ export default async function Header() {
                     />
                   </svg>
                   Log Out
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -163,7 +163,7 @@ export default async function Header() {
   return (
     <NavBar>
       <div className="flex-1">
-        <a href="/" className="btn btn-neutral text-xl">Call Fabric Demo</a>
+        <Link href="/" className="btn btn-neutral text-xl"></Link>
       </div>
       <div className="flex-none gap-2">
         <div>
