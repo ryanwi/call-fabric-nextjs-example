@@ -18,27 +18,14 @@ export default async function Header() {
           </div>
           <div className="">
             <Link href="/calls" className="btn btn-ghost">Calls</Link>
-          </div>    
+          </div>
           <div className="dropdown dropdown-end">
-            <div className="flex-none">
-              <button className="btn btn-square btn-ghost">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-5 h-5 stroke-current"
-                  ><path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path></svg
-                >
-              </button>
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img alt="Navbar Avatar" src="https://i.pravatar.cc/150?u={session.user.id}" />
+              </div>
             </div>
-            <ul
-              className="menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-base-content rounded-box w-80"
-            >
+            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-md dropdown-content bg-base-100 rounded-box w-52">
               <li>
                 <div style={{display: "flex", alignItems: "center"}}>
                   <div className="avatar placeholder">
@@ -88,7 +75,7 @@ export default async function Header() {
                     />
                   </svg>
                   My Profile
-                </Link>                  
+                </Link>
               </li>
               <li>
                 <Link href="/settings">
