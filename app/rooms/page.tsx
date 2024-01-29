@@ -27,9 +27,9 @@ export default async function Page() {
       <div>
         <h1 className="mb-4 mt-4 text-4xl font-extrabold">Rooms</h1>
 
-        <div className="grid grid-cols-3">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4">
           {addressData.map((address) => (
-            <div className="card m-6 w-96 bg-base-100 shadow-xl" key={address.name}>
+            <div className="card bordered m-6 w-96 bg-base-100 shadow-xl" key={address.name}>
               <figure>
                 <img src="https://files.signalwire.com/cantina/02e3021d-861c-49da-9741-5c811aac8657/promos/44513608-5ff4-4b84-bccc-74c15f857c8c.jpg" />
               </figure>
