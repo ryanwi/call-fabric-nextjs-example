@@ -1,25 +1,20 @@
 import Link from 'next/link'
 import { auth } from 'auth'
-import { FabricAddress } from '@/types/FabricAddress'
+import { SignalWire } from '@signalwire/js'
 
 async function getAddresses(sat: string) {
-  const response = await fetch(
-    `${process.env.SIGNALWIRE_FABRIC_API_URL}/addresses?type=room`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${sat}`,
-      },
-    },
-  )
+  const client = await SignalWire({
+    host: process.env.SIGNALWIRE_FABRIC_API_URL,
+    token: sat
+  })
 
-  if (!response.ok) {
-    throw new Error('Failed to get addresses')
+  try {
+    const addressData = await client.getAddresses({ type: 'room' })
+    return addressData.addresses
+  } catch (error) {
+    console.error('Unable to fetch addresses', error)
+    return []
   }
-
-  const addresses = await response.json()
-  return addresses.data
 }
 
 export default async function Page() {
@@ -33,8 +28,8 @@ export default async function Page() {
         <h1 className="mb-4 mt-4 text-4xl font-extrabold">Rooms</h1>
 
         <div className="grid grid-cols-3">
-          {addressData.map((address: FabricAddress) => (
-            <div className="card m-6 w-96 bg-base-100 shadow-xl">
+          {addressData.map((address) => (
+            <div className="card m-6 w-96 bg-base-100 shadow-xl" key={address.name}>
               <figure>
                 <img src="https://files.signalwire.com/cantina/02e3021d-861c-49da-9741-5c811aac8657/promos/44513608-5ff4-4b84-bccc-74c15f857c8c.jpg" />
               </figure>
