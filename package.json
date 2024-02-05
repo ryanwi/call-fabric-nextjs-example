@@ -24,7 +24,7 @@
     "@signalwire/js": "^3.26.0-dev.202401261322.b0761a1.0",
     "@tailwindcss/forms": "^0.5.7",
     "clsx": "^2.1.0",
-    "lucide-react": "^0.316.0",
+    "lucide-react": "^0.322.0",
     "next": "latest",
     "next-auth": "beta",
     "react": "^18",
