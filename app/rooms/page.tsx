@@ -9,8 +9,8 @@ async function getAddresses(sat: string) {
   })
 
   try {
-    const addressData = await client.getAddresses({ type: 'room' })
-    return addressData.addresses
+    const addressData = await client.address.getAddresses({ type: 'room' })
+    return addressData.data
   } catch (error) {
     console.error('Unable to fetch addresses', error)
     return []
