@@ -24,6 +24,7 @@
     "@signalwire/js": "^3.26.0-dev.202402151922.e16ec47.0",
     "@tailwindcss/forms": "^0.5.7",
     "clsx": "^2.1.0",
+    "firebase": "^10.8.0",
     "lucide-react": "^0.331.0",
     "next": "latest",
     "next-auth": "beta",
