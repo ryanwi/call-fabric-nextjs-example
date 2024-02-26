@@ -43,7 +43,8 @@ export const config = {
     // },
     async session({ session, token }: { session: Session; token?: any; }) {
       // session.user.id = token.id
-      (session.user as any).sat = token.accessToken
+      session.user.sat = token.accessToken
+      // console.log("session =", session, "token =", token);
 
       return session
     },    
