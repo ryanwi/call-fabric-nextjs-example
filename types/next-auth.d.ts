@@ -1,6 +1,4 @@
-import NextAuth from "next-auth"
-
-declare module "next-auth" {
+declare module '@auth/core/types' {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
@@ -15,7 +13,8 @@ declare module "next-auth" {
 }
 
 declare module '@auth/core/jwt' {
-	interface JWT {
+  /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
+  interface JWT {
 		id: string | undefined
 		accessToken: string | undefined
 		refreshToken: string | undefined
