@@ -1,6 +1,5 @@
 import NextAuth, { type Session } from "next-auth";
 import type { NextAuthConfig } from "next-auth"
-import { type TokenSet } from "@auth/core/types"
 import { JWT } from "@auth/core/jwt";
 
 export const config = {
@@ -25,6 +24,7 @@ export const config = {
         return {
           id: profile.id,
           email: profile.email,
+          name: profile.display_name,
           firstName: profile.first_name,
           lastName: profile.last_name,
           displayName: profile.display_name,
@@ -38,9 +38,13 @@ export const config = {
     },
   ],
   callbacks: {
+    // authorized({ request, auth }) {
+    //   return true
+    // },
     async session({ session, token }: { session: Session; token?: any; }) {
-      session.user.id = token.id
-      session.user.sat = token.accessToken
+      // console.log("session =", session, "token =", token)
+      // session.user.id = token.id
+      // session.user.sat = token.accessToken
 
       return session
     },    
@@ -48,16 +52,15 @@ export const config = {
       // Initial sign in
       if (account && user) {
         // Persist the OAuth access_token and or the user id to the token right after signin
-        // token.name = `${user.firstName} ${user.lastName}`
         token.id  = user.id
         token.accessToken = account.access_token
         token.refreshToken = account.refresh_token
-        token.expiresAt = Math.floor(Date.now() / 1000 + (account.expires_in || 0))
+        token.accessTokenExpires = Math.floor(Date.now() / 1000 + (account.expires_in || 0))
         return token
       }
 
       // Return previous token if the access token has not expired yet
-      if (Date.now() < token.expiresAt * 1000) {
+      if (Date.now() < token.accessTokenExpires * 1000) {
         return token
       }
 
@@ -66,26 +69,22 @@ export const config = {
       return {
         ...token,
         accessToken: tokens.access_token,
-        expiresAt: Math.floor(Date.now() / 1000 + tokens.expires_in),
-      };        
-
-      // return token
+        accessTokenExpires: Math.floor(Date.now() / 1000 + tokens.expires_in),
+      };
     },
   },
 } satisfies NextAuthConfig
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config)
 
-async function refreshAccessToken(token) {
-  console.log("refreshAccessToken", token)
-
+async function refreshAccessToken(token: JWT) {
   const response = await fetch(process.env.SIGNALWIRE_ACCESS_TOKEN_URL || '', {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
       client_id: process.env.SIGNALWIRE_CLIENT_ID || '',
       client_secret: process.env.SIGNALWIRE_CLIENT_SECRET || '',
       grant_type: 'refresh_token',
-      refresh_token: token.refreshToken,
+      refresh_token: token.refreshToken ?? '',
     }),
     method: 'POST',
   });
